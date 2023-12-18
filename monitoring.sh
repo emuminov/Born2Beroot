@@ -8,7 +8,7 @@ reboot="$(last reboot --fulltime | head -1 | awk '{ printf "%s %s %s %s\n", $6, 
 lvm="$(lsblk | grep 'lvm' | wc -l | awk '{ if ($1) print "Yes"; else print "No" }')"
 conns="$(ss -tH state established | wc -l)"
 users="$(users | sed 's. .\n.' | uniq | wc -l)"
-network="IP $(hostname -I) ($(ip address | grep 'ether' | awk '{ printf $2 }'))"
+network="IP $(hostname -I)($(ip address | grep 'ether' | awk '{ printf $2 }'))"
 sudo="$(journalctl _COMM=sudo -q --no-pager | grep 'COMMAND' | wc -l) cmd"
 
 wall "\
