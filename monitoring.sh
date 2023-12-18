@@ -1,6 +1,6 @@
 arch="$(uname -a)"
 cpus="$(lscpu -p | tail -1 | awk -F ',' '{ print $2 + 1 }')"
-vcpus="$(lscpu -p | tail -1 | awk -F ',' '{ print $2 + 1 }')"
+vcpus="$(lscpu -p | tail -1 | awk -F ',' '{ print $1 + 1 }')"
 ram="$(free -m | grep Mem | awk '{ printf "%s/%sMB (%.2f%%)", $3, $2, ($3 / $2 * 100.0) }')"
 disk="$(df -m --total | grep 'total' | awk '{ printf "%.1f/%.1fGB (%.1f%%)\n", ($3/1024), ($2/1024), $5 }')"
 load="$(top -bn1 | head -1 | awk '{ printf "%.1f%%\n", $(NF) }')"
